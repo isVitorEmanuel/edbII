@@ -2,8 +2,9 @@
 // Created by vitor on 09/12/24.
 //
 
-#include "SearchBinTree.h"
 #include <iostream>
+
+#include "SearchBinTree.h"
 
 using namespace std;
 
@@ -101,6 +102,25 @@ TreeNode* deleteNode(TreeNode* root, const int value) {
     return root;
 }
 
+/**
+* TODO: Add comments.
+*/
+bool isBSTInOrder(TreeNode* root, TreeNode*& prev) {
+    if (root == nullptr) { return true; }
+    if (!isBSTInOrder(root->leftSon, prev)) { return false; }
+ 	if (prev != nullptr && root->value <= prev->value) { return false; }
+	prev = root;
+    return isBSTInOrder(root->rightSon, prev);
+}
+
+/**
+* TODO: Add comments.
+*/
+bool isBinarySearchTree(TreeNode* root) {
+    TreeNode* prev = nullptr;
+    return isBSTInOrder(root, prev);
+}
+
 int main() {
     TreeNode* root = nullptr;
     root = insertNode(root, 10);
@@ -110,8 +130,23 @@ int main() {
     root = insertNode(root, 7);
     root = insertNode(root, 8);
 
-    cout << "Tree: ";
+    std::cout << "Tree: ";
     printTree(root);
+    std::cout << endl;
+
+    if (isBinarySearchTree(root)) {
+		std::cout << "Binary search tree is successful! \n" << endl;
+    } else {
+     	std::cout << "Binary search tree is not successful! \n" << endl;
+    }
+
+    root = insertNode(root, 12);
+
+    if (isBinarySearchTree(root)) {
+		std::cout << "Binary search tree is successful! \n";
+    } else {
+     	std::cout << "Binary search tree is not successful! \n";
+    }
 
     return 0;
 }
