@@ -10,12 +10,15 @@
 using namespace std;
 
 /**
- * TODO: Add comments.
+ * Constructor for the TreeNode class.
+ * Initializes the value of the node and sets the left and right child pointers to nullptr.
  */
 TreeNode::TreeNode(int value) : value(value), leftSon(nullptr), rightSon(nullptr) {}
 
 /**
- * TODO: Add comments.
+ * Performs a pre-order traversal of the binary tree.
+ * Visits the current node first, then the left subtree, and finally the right subtree.
+ * @param root Pointer to the root of the tree.
  */
 void preOrder(TreeNode* root) {
   std::cout << root->value << " ";
@@ -24,7 +27,9 @@ void preOrder(TreeNode* root) {
 }
 
 /**
- * TODO: Add comments.
+ * Performs an in-order traversal of the binary tree.
+ * Visits the left subtree first, then the current node, and finally the right subtree.
+ * @param root Pointer to the root of the tree.
  */
 void inOrder(TreeNode* root) {
   if (root->leftSon != nullptr) { inOrder(root->leftSon); }
@@ -33,7 +38,9 @@ void inOrder(TreeNode* root) {
 }
 
 /**
- * TODO: Add comments.
+ * Performs a post-order traversal of the binary tree.
+ * Visits the left subtree first, then the right subtree, and finally the current node.
+ * @param root Pointer to the root of the tree.
  */
 void postOrder(TreeNode* root) {
   if (root->leftSon != nullptr) { postOrder(root->leftSon); }
@@ -42,7 +49,9 @@ void postOrder(TreeNode* root) {
 }
 
 /**
- * TODO: Add comments.
+ * Performs a level-order traversal of the binary tree.
+ * Visits nodes level by level, starting from the root.
+ * @param root Pointer to the root of the tree.
  */
 void levelOrder(TreeNode* root) {
   if (root == nullptr) { return; }
@@ -62,10 +71,16 @@ void levelOrder(TreeNode* root) {
 }
 
 /**
- * TODO: Add comments.
+ * Prints the tree in a formatted manner.
+ * Displays the root node and its children (left and right) recursively.
+ * If a node has no children, it won't print anything for that side.
+ * @param root Pointer to the root of the tree.
  */
 void printTree(TreeNode* root) {
-  if (root == nullptr) { return; }
+  if (root == nullptr) {
+    std::cout << "Empty tree";
+    return;
+  }
 
   cout << "(" << root->value;
 

@@ -5,7 +5,6 @@
 #ifndef SEARCHBINTREE_H
 #define SEARCHBINTREE_H
 #include "../Tree.h"
-#include <limits>
 
 TreeNode* insertNode(TreeNode* root, int value);
 bool search(TreeNode* root, int value);

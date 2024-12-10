@@ -9,7 +9,12 @@
 using namespace std;
 
 /**
- * TODO: Add comments.
+ * Inserts a new node with the given value into the binary search tree.
+ * If the tree is empty, a new node is created as the root.
+ * Otherwise, it finds the appropriate position for the new node.
+ * @param root The root node of the tree.
+ * @param value The value to be inserted.
+ * @return The updated root of the tree.
  */
 TreeNode* insertNode(TreeNode* root, const int value) {
     if (root == nullptr) { return new TreeNode(value); }
@@ -19,7 +24,11 @@ TreeNode* insertNode(TreeNode* root, const int value) {
 }
 
 /**
- * TODO: Add comments.
+ * Searches for a node with the given value in the binary search tree.
+ * Returns true if the value is found, otherwise returns false.
+ * @param root The root node of the tree.
+ * @param value The value to search for.
+ * @return true if the value is found, false otherwise.
  */
 bool search(TreeNode* root, const int value) {
     if (root == nullptr) { return false; }
@@ -30,7 +39,11 @@ bool search(TreeNode* root, const int value) {
 }
 
 /**
- * TODO: Add comments.
+ * Searches for a node with the given value and its parent in the binary search tree.
+ * @param root The root node of the tree.
+ * @param value The value to search for.
+ * @param parent A pointer to store the parent of the found node.
+ * @return A pointer to the node if found, nullptr if not found.
  */
 TreeNode* searchNode(TreeNode* root, int value, TreeNode** parent) {
     TreeNode* current = root;
@@ -47,7 +60,10 @@ TreeNode* searchNode(TreeNode* root, int value, TreeNode** parent) {
 }
 
 /**
- * TODO: Add comments.
+ * Finds the minimum value node in the binary search tree.
+ * The minimum value node is the leftmost node in the tree.
+ * @param root The root node of the tree.
+ * @return A pointer to the node with the minimum value.
  */
 TreeNode* findMin(TreeNode* root) {
     while (root->leftSon != nullptr) { root = root->leftSon; }
@@ -55,7 +71,14 @@ TreeNode* findMin(TreeNode* root) {
 }
 
 /**
- * TODO: Add comments.
+ * Deletes a node with the given value from the binary search tree.
+ * Handles three cases:
+ * 1. Node has no children (leaf node).
+ * 2. Node has one child.
+ * 3. Node has two children (finds in-order successor and deletes it).
+ * @param root The root node of the tree.
+ * @param value The value to be deleted.
+ * @return The updated root of the tree.
  */
 TreeNode* deleteNode(TreeNode* root, const int value) {
     TreeNode* parent = nullptr;
@@ -66,7 +89,7 @@ TreeNode* deleteNode(TreeNode* root, const int value) {
         return root;
     }
 
-    // First case: No son's;
+    // First case: No children (leaf node).
     if (nodeToDelete->leftSon == nullptr && nodeToDelete->rightSon == nullptr) {
         if (nodeToDelete == root) {
             delete root;
@@ -80,7 +103,7 @@ TreeNode* deleteNode(TreeNode* root, const int value) {
         delete nodeToDelete;
     }
 
-    // Second case: One son.
+    // Second case: One child.
     else if (nodeToDelete->leftSon == nullptr || nodeToDelete->rightSon == nullptr) {
         TreeNode* child = (nodeToDelete->leftSon != nullptr) ? nodeToDelete->leftSon : nodeToDelete->rightSon;
 
@@ -91,7 +114,7 @@ TreeNode* deleteNode(TreeNode* root, const int value) {
         delete nodeToDelete;
     }
 
-    // Three case: Two sons.
+    // Third case: Two children (find the in-order successor and delete it).
     else {
         TreeNode* successor = findMin(nodeToDelete->rightSon);
         int successorValue = successor->value;
@@ -103,50 +126,27 @@ TreeNode* deleteNode(TreeNode* root, const int value) {
 }
 
 /**
-* TODO: Add comments.
-*/
+ * Checks if the binary tree is a valid binary search tree using in-order traversal.
+ * Ensures that each node's value is greater than the value of its predecessor in the traversal.
+ * @param root The root node of the tree.
+ * @param prev A pointer to store the previous node during traversal.
+ * @return true if the tree is a valid binary search tree, false otherwise.
+ */
 bool isBSTInOrder(TreeNode* root, TreeNode*& prev) {
     if (root == nullptr) { return true; }
     if (!isBSTInOrder(root->leftSon, prev)) { return false; }
- 	if (prev != nullptr && root->value <= prev->value) { return false; }
-	prev = root;
+    if (prev != nullptr && root->value <= prev->value) { return false; }
+    prev = root;
     return isBSTInOrder(root->rightSon, prev);
 }
 
 /**
-* TODO: Add comments.
-*/
+ * Wrapper function to check if the binary tree is a valid binary search tree.
+ * Calls the isBSTInOrder function to validate the tree.
+ * @param root The root node of the tree.
+ * @return true if the tree is a valid binary search tree, false otherwise.
+ */
 bool isBinarySearchTree(TreeNode* root) {
     TreeNode* prev = nullptr;
     return isBSTInOrder(root, prev);
-}
-
-int main() {
-    TreeNode* root = nullptr;
-    root = insertNode(root, 10);
-    root = insertNode(root, 5);
-    root = insertNode(root, 15);
-    root = insertNode(root, 3);
-    root = insertNode(root, 7);
-    root = insertNode(root, 8);
-
-    std::cout << "Tree: ";
-    printTree(root);
-    std::cout << endl;
-
-    if (isBinarySearchTree(root)) {
-		std::cout << "Binary search tree is successful! \n" << endl;
-    } else {
-     	std::cout << "Binary search tree is not successful! \n" << endl;
-    }
-
-    root = insertNode(root, 12);
-
-    if (isBinarySearchTree(root)) {
-		std::cout << "Binary search tree is successful! \n";
-    } else {
-     	std::cout << "Binary search tree is not successful! \n";
-    }
-
-    return 0;
 }
