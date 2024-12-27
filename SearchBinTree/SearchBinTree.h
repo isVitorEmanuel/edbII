@@ -1,5 +1,5 @@
 //
-// Created by vitor on 09/12/24.
+// Criado por Vitor em 09/12/24.
 //
 
 #ifndef SEARCHBINTREE_H

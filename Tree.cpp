@@ -1,5 +1,5 @@
 //
-// Created by Vitor on 07/12/24.
+// Criado por Vitor em 07/12/24.
 //
 
 #include "Tree.h"
@@ -10,15 +10,15 @@
 using namespace std;
 
 /**
- * Constructor for the TreeNode class.
- * Initializes the value of the node and sets the left and right child pointers to nullptr.
+ * Construtor da classe TreeNode.
+ * Inicializa o valor do nó e define os ponteiros dos filhos esquerdo e direito como nullptr.
  */
 TreeNode::TreeNode(int value) : value(value), leftSon(nullptr), rightSon(nullptr) {}
 
 /**
- * Performs a pre-order traversal of the binary tree.
- * Visits the current node first, then the left subtree, and finally the right subtree.
- * @param root Pointer to the root of the tree.
+ * Realiza uma travessia em pré-ordem da árvore binária.
+ * Visita o nó atual primeiro, depois a subárvore esquerda e finalmente a subárvore direita.
+ * @param root Ponteiro para a raiz da árvore.
  */
 void preOrder(TreeNode* root) {
   std::cout << root->value << " ";
@@ -27,9 +27,9 @@ void preOrder(TreeNode* root) {
 }
 
 /**
- * Performs an in-order traversal of the binary tree.
- * Visits the left subtree first, then the current node, and finally the right subtree.
- * @param root Pointer to the root of the tree.
+ * Realiza uma travessia em ordem (in-order) da árvore binária.
+ * Visita a subárvore esquerda primeiro, depois o nó atual e finalmente a subárvore direita.
+ * @param root Ponteiro para a raiz da árvore.
  */
 void inOrder(TreeNode* root) {
   if (root->leftSon != nullptr) { inOrder(root->leftSon); }
@@ -38,9 +38,9 @@ void inOrder(TreeNode* root) {
 }
 
 /**
- * Performs a post-order traversal of the binary tree.
- * Visits the left subtree first, then the right subtree, and finally the current node.
- * @param root Pointer to the root of the tree.
+ * Realiza uma travessia em pós-ordem (post-order) da árvore binária.
+ * Visita a subárvore esquerda primeiro, depois a subárvore direita e finalmente o nó atual.
+ * @param root Ponteiro para a raiz da árvore.
  */
 void postOrder(TreeNode* root) {
   if (root->leftSon != nullptr) { postOrder(root->leftSon); }
@@ -49,9 +49,9 @@ void postOrder(TreeNode* root) {
 }
 
 /**
- * Performs a level-order traversal of the binary tree.
- * Visits nodes level by level, starting from the root.
- * @param root Pointer to the root of the tree.
+ * Realiza uma travessia em nível (level-order) da árvore binária.
+ * Visita os nós nível por nível, começando pela raiz.
+ * @param root Ponteiro para a raiz da árvore.
  */
 void levelOrder(TreeNode* root) {
   if (root == nullptr) { return; }
@@ -71,14 +71,14 @@ void levelOrder(TreeNode* root) {
 }
 
 /**
- * Prints the tree in a formatted manner.
- * Displays the root node and its children (left and right) recursively.
- * If a node has no children, it won't print anything for that side.
- * @param root Pointer to the root of the tree.
+ * Imprime a árvore de maneira formatada.
+ * Exibe o nó raiz e seus filhos (esquerdo e direito) recursivamente.
+ * Se um nó não tiver filhos, não será impresso nada para aquele lado.
+ * @param root Ponteiro para a raiz da árvore.
  */
 void printTree(TreeNode* root) {
   if (root == nullptr) {
-    std::cout << "Empty tree";
+    std::cout << "Árvore vazia";
     return;
   }
 

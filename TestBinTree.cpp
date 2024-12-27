@@ -1,5 +1,5 @@
 //
-// Created by vitor on 10/12/24.
+// Criado por Vitor em 10/12/24.
 //
 
 #include <iostream>
@@ -11,11 +11,11 @@
 #include "SearchBinTree/SearchBinTree.h"
 
 /**
- * This function splits the input string entered by the user and converts it
- * into a <command, value> pair
+ * Esta função divide a string de entrada digitada pelo usuário e a converte
+ * em um par <comando, valor>
  *
- * @param input The string command digitized by user.
- * @return A pair with key (command flag) and value.
+ * @param input A string de comando digitada pelo usuário.
+ * @return Um par com a chave (flag do comando) e o valor.
  */
 std::pair<std::string, std::string> splitCommand(const std::string& input) {
   std::istringstream iss(input);
@@ -32,7 +32,7 @@ int main() {
   std::string cliUser;                          //<- Input user.
   TreeNode *root = nullptr;                     //<- A TreeNode to root.
 
-  /** Uncomment this line to add nodes default.
+  /** Uncomment this line to add nodes default. */
     root = insertNode(root, 22);
     root = insertNode(root, 23);
     root = insertNode(root, 30);
@@ -41,7 +41,6 @@ int main() {
     root = insertNode(root, 17);
     root = insertNode(root, 10);
     root = insertNode(root, 15);
-  */
 
   while (cliUser != "exit") {
     std::cout << ">> ";
@@ -65,35 +64,43 @@ int main() {
       std::cout << "--is-bin: check i f tree is binary tree\n";
     }
 
+    // Mostra a árvore.
     if (key == "--s") {
       printTree(root);
       std::cout << std::endl;
     }
 
+    // Mostra a árvore seguindo o percursso de ordem.
     if (key == "--s-in") {
       inOrder(root);
       std::cout << std::endl;
     }
 
+    // Mostra a árvore seguindo o percusso de pré-ordem.
     if (key == "--s-pre") {
       preOrder(root);
       std::cout << std::endl;
     }
 
+    // Mostra a árvore seguindo o percusso de pós-ordem.
     if (key == "--s-pos") {
       postOrder(root);
       std::cout << std::endl;
     }
 
+    // Mostra a árvore seguindo o percusso de nível.
     if (key == "--s-lev") {
       levelOrder(root);
       std::cout << std::endl;
     }
 
+    // Insere um novo nó.
     if (key == "--i") { root = insertNode(root, stoi(value)); }
 
+    // Deleta um nó.
     if (key == "--d") { root = deleteNode(root, stoi(value)); }
 
+    // Encontra um nó na árvore.
     if (key == "--f") {
       if (search(root, stoi(value)) == true) {
         std::cout << "True\n";
@@ -102,6 +109,7 @@ int main() {
       }
     }
 
+    // Checa se a árvore é binária.
     if (key == "--is-bin") {
       if (isBinarySearchTree(root)) {
         std::cout << "True\n";
